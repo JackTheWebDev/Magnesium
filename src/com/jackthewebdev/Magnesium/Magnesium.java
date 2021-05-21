@@ -3,6 +3,7 @@ package com.jackthewebdev.Magnesium;
 
 import com.jackthewebdev.Magnesium.Commands.Test;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,7 +12,7 @@ public class Magnesium extends JavaPlugin {
     @Override
     public void onEnable(){
         getLogger().info("Magnesium Enabled!");
-        this.getCommand("Test").setExecutor(new Test());
+        this.getCommand("test").setExecutor(new Test());
     }
 
     @Override
