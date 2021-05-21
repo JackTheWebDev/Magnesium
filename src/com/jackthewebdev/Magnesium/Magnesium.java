@@ -25,6 +25,7 @@ public class Magnesium extends JavaPlugin {
         getConfig().addDefault("Database.SQLHost","localhost");
         getConfig().addDefault("OnPlayerJoin.Message","Welcome to the server");
         getConfig().addDefault("OnPlayerJoin.PlayerNameColor", "BLUE");
+        getConfig().addDefault("OnPlayerJoin.Enabled",false);
         saveConfig();
     }
 

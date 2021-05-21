@@ -22,6 +22,9 @@ public class PlayerJoin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
-        player.sendMessage(config.getString("OnPlayerJoin.Message")+", "+ChatColor.valueOf(config.getString("OnPlayerJoin.PlayerNameColor"))+player.getName()+ChatColor.WHITE);
+        if(config.getBoolean("OnPlayerJoin.Enabled")) {
+            player.sendMessage(config.getString("OnPlayerJoin.Message") + ", " + ChatColor.valueOf(config.getString("OnPlayerJoin.PlayerNameColor")) + player.getName() + ChatColor.WHITE);
+        }
+        //TODO: check if this is the players first time joining, if so log it in the config file if not just update the latest join
     }
 }
