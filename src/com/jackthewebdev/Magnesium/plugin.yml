@@ -1,0 +1,7 @@
+name: Magnesium
+version: 0.0.1
+description: A open source core plugin
+main: com.jackthewebdev.Magnesium.Magnesium
+commands:
+  test:
+    description: Test everything
