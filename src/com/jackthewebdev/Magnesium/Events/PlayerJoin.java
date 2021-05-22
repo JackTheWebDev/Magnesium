@@ -1,14 +1,12 @@
 package com.jackthewebdev.Magnesium.Events;
 import com.jackthewebdev.Magnesium.Magnesium;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.IOException;
