@@ -45,7 +45,6 @@ public class report implements CommandExecutor {
                     System.out.println("Payload: "+payload);
 
 
-                    /*
                     try {
 
                         URL url = new URL(webhookUrl);
@@ -72,7 +71,7 @@ public class report implements CommandExecutor {
                     } catch (Exception e){
                         e.printStackTrace();
                     }
-                     */
+
 
                     commandSender.sendMessage("Report filed");
                 }
