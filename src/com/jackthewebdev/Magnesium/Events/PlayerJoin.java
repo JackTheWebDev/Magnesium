@@ -27,7 +27,7 @@ public class PlayerJoin implements Listener {
     }
 
     public void loadConfigFile(){
-        file = new File(plugin.getDataFolder(),"users.yml");
+        file = new File(plugin.getDataFolder(), "src/users.yml");
         conf = YamlConfiguration.loadConfiguration(file);
     }
 
