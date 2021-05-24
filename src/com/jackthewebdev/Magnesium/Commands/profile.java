@@ -1,6 +1,7 @@
 package com.jackthewebdev.Magnesium.Commands;
 
 import com.jackthewebdev.Magnesium.Magnesium;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -62,7 +63,7 @@ public class profile implements CommandExecutor {
                         commandSender.sendMessage(player1.getName()+" Last joined on: "+UnixTimestamp);
                     }
                 }else{
-                    commandSender.sendMessage("No information on this user, are your logs on?");
+                    commandSender.sendMessage(ChatColor.RED+"No information on this user, are the logs on?"+ChatColor.RESET);
                     return false;
                 }
 

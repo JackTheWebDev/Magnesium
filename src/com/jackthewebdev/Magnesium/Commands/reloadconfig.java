@@ -26,7 +26,7 @@ public class reloadconfig implements CommandExecutor {
         if(commandSender.hasPermission("magnesium.viewConfig")){
             plugin.saveConfig();
         }else{
-            commandSender.sendMessage(ChatColor.RED+"You do not have proper permissions to do this");
+            commandSender.sendMessage(ChatColor.RED+"You do not have proper permissions to do this"+ChatColor.RESET);
             return false;
         }
 
