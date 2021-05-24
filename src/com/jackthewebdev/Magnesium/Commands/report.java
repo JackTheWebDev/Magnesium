@@ -7,15 +7,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import sun.net.www.http.HttpClient;
+import com.jackthewebdev.Magnesium.Utilities.DiscordWebhook;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import java.io.*;
-import java.net.*;
-import java.nio.charset.StandardCharsets;
+import javax.xml.ws.Response;
 
 public class report implements CommandExecutor {
 
@@ -49,43 +44,19 @@ public class report implements CommandExecutor {
                     System.out.println("Payload: "+payload);
                     try {
 
-                        URL url = new URL(webhookUrl);
-                        System.out.println("webhookUrl: "+webhookUrl);
+                        DiscordWebhook hook = new DiscordWebhook();
+                        int status = hook.sendWebhook(webhookUrl,payload);
 
-                        SSLContext sc = SSLContext.getInstance("TLSv1.2");
-                        // Init the SSLContext with a TrustManager[] and SecureRandom()
-                        sc.init(null, null, new java.security.SecureRandom());
+                        //FIXME: code past here does run, probably something to do with the webhook idk
 
-                        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-                        connection.setRequestProperty("Content-Type","application/json");
-                        connection.setRequestProperty("User-Agent","Mozilla");
-                        connection.setRequestMethod("POST");
-                        connection.setDoOutput(true);
-                        connection.setSSLSocketFactory(sc.getSocketFactory());
-
-                        DataOutputStream writer = new DataOutputStream(connection.getOutputStream());
-                        writer.write(payload.getBytes(StandardCharsets.UTF_8));
-
-                        // Always flush and close
-                        writer.flush();
-                        writer.close();
-
-                        connection.getInputStream().close();
-                        int status = connection.getResponseCode();
-                        connection.disconnect();
-
-                        //TODO: Make sure that the connection actually disconnected, cause this code doesnt run and idk why
-
-                        System.out.println("Response: "+status);
-                        System.out.println("Response msg: " + connection.getResponseMessage());
-
-
-
+                        if(status != 204){
+                            commandSender.sendMessage("Failed to send the webhook");
+                            return false;
+                        }
+                        System.out.println("Webhook success");
                     } catch (Exception e){
                         e.printStackTrace();
                     }
-
-
                     commandSender.sendMessage("Report filed");
                 }
                 return true;
