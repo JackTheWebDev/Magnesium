@@ -13,7 +13,6 @@ import java.security.NoSuchAlgorithmException;
 public class DiscordWebhook {
     public int sendWebhook(String webhookUrl, String payload) throws NoSuchAlgorithmException, IOException, KeyManagementException {
         URL url = new URL(webhookUrl);
-        System.out.println("webhookUrl: "+webhookUrl);
 
         SSLContext sc = SSLContext.getInstance("TLSv1.2");
         // Init the SSLContext with a TrustManager[] and SecureRandom()

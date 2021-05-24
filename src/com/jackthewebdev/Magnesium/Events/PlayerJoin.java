@@ -1,5 +1,6 @@
 package com.jackthewebdev.Magnesium.Events;
 import com.jackthewebdev.Magnesium.Magnesium;
+import com.jackthewebdev.Magnesium.Utilities.DiscordWebhook;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -10,6 +11,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 
 public class PlayerJoin implements Listener {
@@ -32,7 +38,7 @@ public class PlayerJoin implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) throws IOException {
+    public void onPlayerJoin(PlayerJoinEvent event) throws IOException, KeyManagementException, NoSuchAlgorithmException {
         Player player = event.getPlayer();
         if(config.getBoolean("OnPlayerJoin.Enabled")) {
             player.sendMessage(config.getString("OnPlayerJoin.Message") + ", " + ChatColor.valueOf(config.getString("OnPlayerJoin.PlayerNameColor")) + player.getName() + ChatColor.WHITE);
@@ -42,5 +48,15 @@ public class PlayerJoin implements Listener {
         }
         conf.set("Users."+player.getUniqueId()+".latestjoin",System.currentTimeMillis());
         conf.save(file);
+
+
+        if(config.getBoolean("Logs.LogUserJoin")){
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+            String payload = "{\"content\":\""+event.getPlayer().getName()+" has joined the game at: "+ formatter.format(date)+"\"}";
+            DiscordWebhook hook = new DiscordWebhook();
+            hook.sendWebhook(config.getString("Logs.DiscordWebhook"),payload);
+        }
     }
 }

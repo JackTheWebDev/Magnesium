@@ -4,6 +4,8 @@ package com.jackthewebdev.Magnesium;
 import com.jackthewebdev.Magnesium.Commands.test;
 import com.jackthewebdev.Magnesium.Commands.report;
 import com.jackthewebdev.Magnesium.Events.PlayerJoin;
+import com.jackthewebdev.Magnesium.Events.PlayerQuit;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -20,6 +22,7 @@ public class Magnesium extends JavaPlugin {
         loadConfig();
         RegisterPermissions();
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), plugin);
+        getServer().getPluginManager().registerEvents(new PlayerQuit(this),plugin);
 
     }
 
@@ -31,8 +34,12 @@ public class Magnesium extends JavaPlugin {
         getConfig().addDefault("OnPlayerJoin.Message","Welcome to the server");
         getConfig().addDefault("OnPlayerJoin.PlayerNameColor", "BLUE");
         getConfig().addDefault("OnPlayerJoin.Enabled",false);
+        getConfig().addDefault("OnPlayerLeave.Enabled",false);
         getConfig().addDefault("Report.Enabled",true);
         getConfig().addDefault("Report.DiscordWebhook","https://www.google.com");
+        getConfig().addDefault("Logs.LogUserJoin",true);
+        getConfig().addDefault("Logs.LogUserLeave",true);
+        getConfig().addDefault("Logs.DiscordWebhook","https://www.google.com");
         saveConfig();
     }
 
