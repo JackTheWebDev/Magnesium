@@ -1,8 +1,9 @@
 package com.jackthewebdev.Magnesium;
 
 
-import com.jackthewebdev.Magnesium.Commands.Test;
+import com.jackthewebdev.Magnesium.Commands.test;
 import com.jackthewebdev.Magnesium.Commands.report;
+import com.jackthewebdev.Magnesium.Events.PlayerJoin;
 import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -14,7 +15,7 @@ public class Magnesium extends JavaPlugin {
     public void onEnable(){
         Plugin plugin = this;
         getLogger().info("Magnesium Enabled!");
-        this.getCommand("test").setExecutor(new t);
+        this.getCommand("test").setExecutor(new test());
         this.getCommand("report").setExecutor(new report(this));
         loadConfig();
         RegisterPermissions();

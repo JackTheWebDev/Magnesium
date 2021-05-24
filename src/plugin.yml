@@ -5,3 +5,5 @@ main: com.jackthewebdev.Magnesium.Magnesium
 commands:
   test:
     description: Test everything
+  report:
+    description: Report a uesr
