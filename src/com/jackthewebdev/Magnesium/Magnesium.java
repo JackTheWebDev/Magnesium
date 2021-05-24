@@ -17,11 +17,11 @@ public class Magnesium extends JavaPlugin {
 
     @Override
     public void onEnable(){
-        getLogger().info("Magnesium Enabled!");
         loadCommands();
         loadConfig();
         RegisterPermissions();
         loadEvents();
+        getLogger().info("Magnesium Enabled!");
     }
 
     public void loadEvents(){
