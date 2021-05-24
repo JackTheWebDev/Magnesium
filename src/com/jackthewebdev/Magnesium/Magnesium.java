@@ -1,11 +1,11 @@
 package com.jackthewebdev.Magnesium;
 
 
+import com.jackthewebdev.Magnesium.Commands.reloadconfig;
 import com.jackthewebdev.Magnesium.Commands.test;
 import com.jackthewebdev.Magnesium.Commands.report;
 import com.jackthewebdev.Magnesium.Events.PlayerJoin;
 import com.jackthewebdev.Magnesium.Events.PlayerQuit;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -13,19 +13,27 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Magnesium extends JavaPlugin {
 
+    Plugin plugin = this;
+
     @Override
     public void onEnable(){
-        Plugin plugin = this;
         getLogger().info("Magnesium Enabled!");
-        this.getCommand("test").setExecutor(new test());
-        this.getCommand("report").setExecutor(new report(this));
+        loadCommands();
         loadConfig();
         RegisterPermissions();
-        getServer().getPluginManager().registerEvents(new PlayerJoin(this), plugin);
-        getServer().getPluginManager().registerEvents(new PlayerQuit(this),plugin);
-
+        loadEvents();
     }
 
+    public void loadEvents(){
+        getServer().getPluginManager().registerEvents(new PlayerJoin(this), plugin);
+        getServer().getPluginManager().registerEvents(new PlayerQuit(this),plugin);
+    }
+
+    public void loadCommands(){
+        this.getCommand("test").setExecutor(new test());
+        this.getCommand("report").setExecutor(new report(this));
+        this.getCommand("mg reload").setExecutor(new reloadconfig(this));
+    }
     public void loadConfig(){
         getConfig().options().copyDefaults(true);
         getConfig().addDefault("Database.SQLUsername","Admin");

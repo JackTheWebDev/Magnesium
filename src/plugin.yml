@@ -7,3 +7,5 @@ commands:
     description: Test everything
   report:
     description: Report a uesr
+  mg reload:
+    description: Reload the configuration files
