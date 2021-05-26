@@ -1,6 +1,7 @@
 package com.jackthewebdev.Magnesium;
 
 
+import com.jackthewebdev.Magnesium.Commands.profile;
 import com.jackthewebdev.Magnesium.Commands.reloadconfig;
 import com.jackthewebdev.Magnesium.Commands.test;
 import com.jackthewebdev.Magnesium.Commands.report;
@@ -33,6 +34,7 @@ public class Magnesium extends JavaPlugin {
         this.getCommand("test").setExecutor(new test());
         this.getCommand("report").setExecutor(new report(this));
         this.getCommand("mg reload").setExecutor(new reloadconfig(this));
+        this.getCommand("profile").setExecutor(new profile(this));
     }
     public void loadConfig(){
         getConfig().options().copyDefaults(true);

@@ -9,3 +9,5 @@ commands:
     description: Report a uesr
   mg reload:
     description: Reload the configuration files
+  profile:
+    description: View a users profile
